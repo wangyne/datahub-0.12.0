@@ -1,6 +1,7 @@
 import { GetDatasetDocument, UpdateDatasetDocument, GetDatasetSchemaDocument } from './graphql/dataset.generated';
 import { GetDataFlowDocument } from './graphql/dataFlow.generated';
 import { GetDataJobDocument } from './graphql/dataJob.generated';
+import { useTranslation } from 'react-i18next';
 import { GetBrowsePathsDocument, GetBrowseResultsDocument } from './graphql/browse.generated';
 import {
     GetAutoCompleteResultsDocument,
@@ -1630,10 +1631,10 @@ export const mlModelGroup = {
     status: null,
     deprecation: null,
 } as MlModelGroup;
-
+const { t } = useTranslation()
 export const recommendationModules = [
     {
-        title: 'Most Popular',
+        title: t('Most Popular'),
         moduleId: 'MostPopular',
         renderType: RecommendationRenderType.EntityNameList,
         content: [
@@ -1645,7 +1646,7 @@ export const recommendationModules = [
         ],
     },
     {
-        title: 'Top Platforms',
+        title: t('Top Platforms'),
         moduleId: 'TopPlatforms',
         renderType: RecommendationRenderType.PlatformSearchList,
         content: [
@@ -1671,7 +1672,7 @@ export const recommendationModules = [
         ],
     },
     {
-        title: 'Popular Tags',
+        title: t('Popular Tags'),
         moduleId: 'PopularTags',
         renderType: RecommendationRenderType.TagSearchList,
         content: [

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import styled from 'styled-components';
 import * as QueryString from 'query-string';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { AlignType } from 'rc-table/lib/interface';
 import { EntityType } from '../../types.generated';
 import { useListDomainsQuery } from '../../graphql/domain.generated';
@@ -54,7 +55,7 @@ export const DomainsList = () => {
 
     const pageSize = DEFAULT_PAGE_SIZE;
     const start = (page - 1) * pageSize;
-
+    const { t } = useTranslation()
     const { loading, error, data, client, refetch } = useListDomainsQuery({
         variables: {
             input: {
@@ -142,7 +143,7 @@ export const DomainsList = () => {
                     </Button>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText="Search domains..."
+                        placeholderText={t("Search domains...")}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,

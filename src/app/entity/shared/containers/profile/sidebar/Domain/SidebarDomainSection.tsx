@@ -42,11 +42,12 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
     const [unsetDomainMutation] = useUnsetDomainMutation();
     const [showModal, setShowModal] = useState(false);
     const domain = entityData?.domain?.domain;
+    const { t } = useTranslation()
 
     const removeDomain = (urnToRemoveFrom) => {
         unsetDomainMutation({ variables: { entityUrn: urnToRemoveFrom } })
             .then(() => {
-                message.success({ content: 'Removed Domain.', duration: 2 });
+                message.success({ content: t('Removed Domain.'), duration: 2 });
                 refetch?.();
             })
             .catch((e: unknown) => {
@@ -59,8 +60,8 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
 
     const onRemoveDomain = (urnToRemoveFrom) => {
         Modal.confirm({
-            title: `Confirm Domain Removal`,
-            content: `Are you sure you want to remove this domain?`,
+            title: t(`Confirm Domain Removal`),
+            content: t(`Are you sure you want to remove this domain?`),
             onOk() {
                 removeDomain(urnToRemoveFrom);
             },
@@ -70,7 +71,7 @@ export const SidebarDomainSection = ({ readOnly, properties }: Props) => {
             closable: true,
         });
     };
-    const { t } = useTranslation()
+
     const titleTrans = t(EMPTY_MESSAGES.domain.title);
     const descTrans = t(EMPTY_MESSAGES.domain.description);
     return (

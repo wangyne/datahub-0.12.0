@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState, useRef, useCallback, EventHandler, SyntheticEvent } from 'react';
 import { Input, AutoComplete, Button } from 'antd';
 import { CloseCircleFilled, SearchOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import { useHistory } from 'react-router';
 import { AutoCompleteResultForEntity, EntityType, FacetFilterInput, ScenarioType } from '../../types.generated';
@@ -175,7 +176,7 @@ export const SearchBar = ({
         analytics.event({ type: EventType.SearchBarExploreAllClickEvent });
         navigateToSearchUrl({ query: '*', history });
     }, [history]);
-
+    const { t } = useTranslation()
     const emptyQueryOptions = useMemo(() => {
         const moduleOptions =
             data?.listRecommendations?.modules.map((module) => ({
@@ -188,7 +189,7 @@ export const SearchBar = ({
             type: '',
             label: (
                 <Button type="link" onClick={onClickExploreAll}>
-                    Explore all →
+                    {t('Explore all')} →
                 </Button>
             ),
             style: { marginLeft: 'auto', cursor: 'auto' },
@@ -198,7 +199,7 @@ export const SearchBar = ({
         const tail = showQuickFilters ? [exploreAllOption] : [];
 
         return [...moduleOptions, ...tail];
-    }, [data?.listRecommendations?.modules, onClickExploreAll, showQuickFilters]);
+    }, [data?.listRecommendations?.modules, onClickExploreAll, showQuickFilters, t]);
 
     const { quickFilters, selectedQuickFilter, setSelectedQuickFilter } = useQuickFiltersContext();
 

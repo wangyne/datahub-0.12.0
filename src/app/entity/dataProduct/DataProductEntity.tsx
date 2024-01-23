@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FileDoneOutlined } from '@ant-design/icons';
+import { t } from "i18next";
 import { DataProduct, EntityType, OwnershipType, SearchResult } from '../../../types.generated';
 import { Entity, EntityCapabilityType, IconStyleType, PreviewType } from '../Entity';
 import { EntityProfile } from '../shared/containers/profile/EntityProfile';
@@ -75,15 +76,15 @@ export class DataProductEntity implements Entity<DataProduct> {
             isNameEditable
             tabs={[
                 {
-                    name: 'Documentation',
+                    name: t('Documentation'),
                     component: DocumentationTab,
                 },
                 {
-                    name: 'Assets',
+                    name: t('Assets'),
                     component: DataProductEntitiesTab,
                 },
                 {
-                    name: 'Properties',
+                    name: t('Properties'),
                     component: PropertiesTab,
                 },
             ]}

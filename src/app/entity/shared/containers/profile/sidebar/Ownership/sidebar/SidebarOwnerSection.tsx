@@ -56,6 +56,8 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
         default:
             break;
     }
+    const ownersTitleTrans = t(EMPTY_MESSAGES.owners.title);
+    const ownersDescTrans = t(EMPTY_MESSAGES.owners.description);
 
     return (
         <div id={ENTITY_PROFILE_OWNERS_ID}>
@@ -68,7 +70,7 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
                 })}
                 {ownersEmpty && (
                     <Typography.Paragraph type="secondary">
-                        {EMPTY_MESSAGES.owners.title}. {EMPTY_MESSAGES.owners.description}
+                        {ownersTitleTrans}. {ownersDescTrans}
                     </Typography.Paragraph>
                 )}
                 {!readOnly && (

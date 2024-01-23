@@ -1,5 +1,6 @@
 import React from 'react';
 import { Divider } from 'antd';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import TagTermGroup from '../../../../../shared/tags/TagTermGroup';
@@ -28,11 +29,11 @@ export const SidebarTagsSection = ({ properties, readOnly }: Props) => {
     const { entityType, entityData } = useEntityData();
 
     const refetch = useRefetch();
-
+    const { t } = useTranslation()
     return (
         <div>
             <span id={ENTITY_PROFILE_TAGS_ID}>
-                <SidebarHeader title="Tags" />
+                <SidebarHeader title={t("Tags")} />
                 <TagTermGroup
                     editableTags={entityData?.globalTags}
                     canAddTag={canAddTag}
@@ -47,7 +48,7 @@ export const SidebarTagsSection = ({ properties, readOnly }: Props) => {
             </span>
             <StyledDivider />
             <span id={ENTITY_PROFILE_GLOSSARY_TERMS_ID}>
-                <SidebarHeader title="Glossary Terms" />
+                <SidebarHeader title={t("Glossary Terms")} />
                 <TagTermGroup
                     editableGlossaryTerms={entityData?.glossaryTerms}
                     canAddTerm={canAddTerm}

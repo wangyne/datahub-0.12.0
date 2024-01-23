@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { FacetFilterInput, FacetMetadata } from '../../../../types.generated';
 import { useAggregateAcrossEntitiesLazyQuery } from '../../../../graphql/search.generated';
 import useGetSearchQueryInputs from '../../useGetSearchQueryInputs';
@@ -73,14 +75,14 @@ export default function EntityTypeFilter({ filter, activeFilters, onChangeFilter
     );
     const numActiveFilters = getNumActiveFilters(activeFilters);
     const filterIcon = getFilterDropdownIcon(filter.field);
-
+    const { t } = useTranslation()
     return (
         <SearchFilterView
             filterOptions={filterOptions}
             isMenuOpen={isMenuOpen}
             numActiveFilters={numActiveFilters}
             filterIcon={filterIcon}
-            displayName={filter.displayName || ''}
+            displayName={t(filter.displayName || '')}
             searchQuery={searchQuery}
             loading={loading}
             updateIsMenuOpen={updateIsMenuOpen}

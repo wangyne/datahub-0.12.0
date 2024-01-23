@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { t } from "i18next";
 import styled from 'styled-components';
 import { NoMarginButton } from './styledComponents';
 import { ANTD_GRAY_V2 } from '../../shared/constants';
@@ -42,7 +43,7 @@ export const ViewSelectHeader = ({ onClickClear }: Props) => {
                 ref={clearButtonRef}
                 onClick={onHandleClickClear}
             >
-                View all
+                {t('View all')}
             </AllEntitiesButton>
         </ButtonContainer>
     );

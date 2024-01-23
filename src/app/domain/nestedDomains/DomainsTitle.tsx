@@ -14,7 +14,7 @@ export default function DomainsTitle() {
             <IconWrapper>
                 <DomainIcon />
             </IconWrapper>
-            {t('主题域')}
+            {t('Domains')}
         </span>
     );
 }

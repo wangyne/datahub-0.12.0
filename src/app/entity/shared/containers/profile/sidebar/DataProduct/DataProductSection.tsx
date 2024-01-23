@@ -1,4 +1,5 @@
 import { EditOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { Button, Modal, Typography, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -28,7 +29,7 @@ export default function DataProductSection({ readOnly }: Props) {
     const [dataProduct, setDataProduct] = useState<DataProduct | null>(null);
     const dataProductRelationships = entityData?.dataProduct?.relationships;
     const siblingUrns: string[] = entityData?.siblings?.siblings?.map((sibling) => sibling?.urn || '') || [];
-
+    const { t } = useTranslation()
     useEffect(() => {
         if (dataProductRelationships && dataProductRelationships.length > 0) {
             setDataProduct(dataProductRelationships[0].entity as DataProduct);
@@ -68,7 +69,7 @@ export default function DataProductSection({ readOnly }: Props) {
 
     return (
         <>
-            <SidebarHeader title="Data Product" />
+            <SidebarHeader title={t("Data Product")} />
             {dataProduct && (
                 <DataProductLink
                     dataProduct={dataProduct}
@@ -84,11 +85,11 @@ export default function DataProductSection({ readOnly }: Props) {
             {!dataProduct && (
                 <>
                     <EmptyText type="secondary">
-                        {EMPTY_MESSAGES.dataProduct.title}. {EMPTY_MESSAGES.dataProduct.description}
+                        {t(EMPTY_MESSAGES.dataProduct.title)}. {t(EMPTY_MESSAGES.dataProduct.description)}
                     </EmptyText>
                     {!readOnly && (
                         <Button type="default" onClick={() => setIsModalVisible(true)}>
-                            <EditOutlined /> Set Data Product
+                            <EditOutlined /> {t('Set Data Product')}
                         </Button>
                     )}
                 </>

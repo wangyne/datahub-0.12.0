@@ -1,11 +1,13 @@
 import React from 'react';
 import { Typography } from 'antd';
+
 import { OnboardingStep } from '../OnboardingStep';
 
 export const DOMAINS_INTRO_ID = 'domains-intro';
 export const DOMAINS_CREATE_DOMAIN_ID = 'domains-create-domain';
 
 export const DomainsOnboardingConfig: OnboardingStep[] = [
+
     {
         id: DOMAINS_INTRO_ID,
         title: 'Domains',

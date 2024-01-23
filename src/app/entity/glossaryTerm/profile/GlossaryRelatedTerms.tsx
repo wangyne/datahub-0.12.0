@@ -1,4 +1,5 @@
 import { Menu } from 'antd';
+import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useEntityData } from '../../shared/EntityContext';
@@ -24,7 +25,7 @@ export default function GlossayRelatedTerms() {
     const { entityData } = useEntityData();
     const [selectedKey, setSelectedKey] = useState('');
     const menuOptionsArray = Object.keys(RelatedTermTypes);
-
+    const { t } = useTranslation()
     useEffect(() => {
         if (menuOptionsArray && menuOptionsArray.length > 0 && selectedKey.length === 0) {
             setSelectedKey(menuOptionsArray[0]);
@@ -49,7 +50,7 @@ export default function GlossayRelatedTerms() {
                 >
                     {menuOptionsArray.map((option) => (
                         <Menu.Item data-testid={option} key={option}>
-                            {RelatedTermTypes[option]}
+                            {t(RelatedTermTypes[option])}
                         </Menu.Item>
                     ))}
                 </Menu>
@@ -57,7 +58,7 @@ export default function GlossayRelatedTerms() {
             <Content>
                 {selectedKey && entityData && (
                     <GlossaryRelatedTermsResult
-                        glossaryRelatedTermType={RelatedTermTypes[selectedKey]}
+                        glossaryRelatedTermType={t(RelatedTermTypes[selectedKey])}
                         glossaryRelatedTermResult={entityData[selectedKey]?.relationships || []}
                     />
                 )}

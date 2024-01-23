@@ -120,8 +120,8 @@ function BusinessGlossaryPage() {
                     {hasTermsOrNodes && <GlossaryEntitiesList nodes={nodes || []} terms={terms || []} />}
                     {!(termsLoading || nodesLoading) && !hasTermsOrNodes && (
                         <EmptyGlossarySection
-                            title="Empty Glossary"
-                            description="Create Terms and Term Groups to organize data assets using a shared vocabulary."
+                            title= "Empty Glossary"
+                            description={t("Create Terms and Term Groups to organize data assets using a shared vocabulary.")}
                             refetchForTerms={refetchForTerms}
                             refetchForNodes={refetchForNodes}
                         />

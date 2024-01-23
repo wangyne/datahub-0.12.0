@@ -1,5 +1,6 @@
 import { Divider } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FacetFilterInput, FacetMetadata } from '../../../types.generated';
 import { useUserContext } from '../../context/useUserContext';
@@ -83,7 +84,7 @@ export default function BasicFilters({
     const visibleFilters = shouldShowMoreDropdown ? filters?.slice(0, NUM_VISIBLE_FILTER_DROPDOWNS) : filters;
     const hiddenFilters = shouldShowMoreDropdown ? filters?.slice(NUM_VISIBLE_FILTER_DROPDOWNS) : [];
     const filterRendererRegistry = useFilterRendererRegistry();
-
+    const { t } = useTranslation()
     return (
         <span id={SEARCH_RESULTS_FILTERS_ID}>
             <FlexSpacer>
@@ -121,7 +122,7 @@ export default function BasicFilters({
                         onClick={showAdvancedFilters}
                         marginTop={0}
                     >
-                        Advanced Filters
+                        {t('Advanced Filters')}
                     </TextButton>
                 </FilterButtonsWrapper>
             </FlexSpacer>

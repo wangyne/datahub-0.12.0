@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components';
 import { Typography } from 'antd';
 import { ANTD_GRAY } from '../../entity/shared/constants';
@@ -51,7 +52,7 @@ const EntityNode = () => {
         environmentAggregations &&
         (environmentAggregations.length > 1 || (hasEnvironmentFilter && !!environmentAggregations.length));
     const color = count > 0 ? '#000' : ANTD_GRAY[8];
-
+    const { t } = useTranslation()
     return (
         <ExpandableNode
             isOpen={isOpen && !isClosing && loaded}
@@ -66,7 +67,7 @@ const EntityNode = () => {
                     <ExpandableNode.HeaderLeft>
                         {registry.getIcon(entityType, 16, IconStyleType.HIGHLIGHT, color)}
                         <ExpandableNode.Title color={color} size={16} padLeft>
-                            {registry.getCollectionName(entityType)}
+                            {t(registry.getCollectionName(entityType))}
                         </ExpandableNode.Title>
                         <Count color={color}>{countText}</Count>
                     </ExpandableNode.HeaderLeft>

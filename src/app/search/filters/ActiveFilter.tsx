@@ -1,4 +1,5 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { Button, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
@@ -62,7 +63,7 @@ function ActiveFilter({
         12,
         filterLabelOverride,
     );
-
+    const { t } = useTranslation()
     function removeFilter() {
         const newFilterValues = filterFacet.values?.filter((value) => value !== filterValue) || [];
         onChangeFilters(getNewFilters(filterFacet.field, activeFilters, newFilterValues));
@@ -73,7 +74,7 @@ function ActiveFilter({
             {icon}
             {icon && <IconSpacer />}
             <Label ellipsis={{ tooltip: label }} style={{ maxWidth: 150 }}>
-                {label}
+                {t(label)}
             </Label>
             <StyledButton
                 icon={<CloseCircleOutlined />}

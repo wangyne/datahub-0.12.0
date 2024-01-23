@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { EntityType, Owner, GlobalTags, GlossaryTerms, Domain, EntityPath } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
@@ -32,14 +33,14 @@ export const Preview = ({
     paths,
 }: Props): JSX.Element => {
     const entityRegistry = useEntityRegistry();
-
+    const { t } = useTranslation()
     return (
         <DefaultPreviewCard
             url={entityRegistry.getEntityUrl(EntityType.DataProduct, urn)}
             name={name || ''}
             urn={urn}
             description={description || ''}
-            type={entityRegistry.getEntityName(EntityType.DataProduct)}
+            type={t(entityRegistry.getEntityName(EntityType.DataProduct))}
             typeIcon={entityRegistry.getIcon(EntityType.DataProduct, 12, IconStyleType.ACCENT)}
             qualifier={origin}
             tags={globalTags || undefined}

@@ -1,4 +1,5 @@
 import { message, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import ActionDropdown from './ActionDropdown';
 import { handleBatchError } from '../../../../utils';
@@ -15,7 +16,7 @@ type Props = {
 export default function DataProductsDropdown({ urns, disabled = false, refetch }: Props) {
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [batchSetDataProductMutation] = useBatchSetDataProductMutation();
-
+    const { t } = useTranslation()
     const batchUnsetDataProducts = () => {
         batchSetDataProductMutation({
             variables: {
@@ -47,16 +48,16 @@ export default function DataProductsDropdown({ urns, disabled = false, refetch }
     return (
         <>
             <ActionDropdown
-                name="Data Product"
+                name={t("Data Product")}
                 actions={[
                     {
-                        title: 'Set Data Product',
+                        title: t('Set Data Product'),
                         onClick: () => {
                             setIsEditModalVisible(true);
                         },
                     },
                     {
-                        title: 'Unset Data Product',
+                        title: t('Unset Data Product'),
                         onClick: () => {
                             Modal.confirm({
                                 title: `If you continue, Data Product will be removed for the selected assets.`,

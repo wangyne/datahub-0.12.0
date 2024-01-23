@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { message, Modal, Button, Form, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { useEntityData, useMutationUrn } from '../../EntityContext';
 import { useAddLinkMutation } from '../../../../../graphql/mutations.generated';
 import analytics, { EventType, EntityActionType } from '../../../../analytics';
@@ -19,7 +20,7 @@ export const AddLinkModal = ({ buttonProps, refetch }: AddLinkProps) => {
     const [addLinkMutation] = useAddLinkMutation();
 
     const [form] = Form.useForm();
-
+    const { t } = useTranslation()
     const showModal = () => {
         setIsModalVisible(true);
     };
@@ -58,10 +59,10 @@ export const AddLinkModal = ({ buttonProps, refetch }: AddLinkProps) => {
     return (
         <>
             <Button data-testid="add-link-button" icon={<PlusOutlined />} onClick={showModal} {...buttonProps}>
-                Add Link
+                {t('Add Link')}
             </Button>
             <Modal
-                title="Add Link"
+                title={t("Add Link")}
                 visible={isModalVisible}
                 destroyOnClose
                 onCancel={handleClose}

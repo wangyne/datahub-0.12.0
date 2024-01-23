@@ -48,7 +48,7 @@ const BrowseSidebar = ({ visible, width }: Props) => {
     return (
         <Sidebar visible={visible} width={width} id={SEARCH_RESULTS_BROWSE_SIDEBAR_ID} data-testid="browse-v2">
             <SidebarHeader>
-                <Typography.Text strong>Navigate</Typography.Text>
+                <Typography.Text strong>导航</Typography.Text>
             </SidebarHeader>
             <SidebarBody>
                 {entityAggregations && !entityAggregations.length && <div>No results found</div>}

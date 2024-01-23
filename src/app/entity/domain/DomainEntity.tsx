@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { t } from "i18next";
 import { Domain, EntityType, SearchResult } from '../../../types.generated';
 import { Entity, EntityCapabilityType, IconStyleType, PreviewType } from '../Entity';
 import { Preview } from './preview/Preview';
@@ -61,7 +62,7 @@ export class DomainEntity implements Entity<Domain> {
 
     getPathName = () => 'domain';
 
-    getEntityName = () => 'Domain';
+    getEntityName = () => 'domain';
 
     getCollectionName = () => 'Domains';
 
@@ -78,17 +79,17 @@ export class DomainEntity implements Entity<Domain> {
             tabs={[
                 {
                     id: EntityProfileTab.DOMAIN_ENTITIES_TAB,
-                    name: 'Entities',
+                    name: t('Entities'),
                     component: DomainEntitiesTab,
                 },
                 {
                     id: EntityProfileTab.DOCUMENTATION_TAB,
-                    name: 'Documentation',
+                    name: t('Documentation'),
                     component: DocumentationTab,
                 },
                 {
                     id: EntityProfileTab.DATA_PRODUCTS_TAB,
-                    name: 'Data Products',
+                    name: t('Data Products'),
                     component: DataProductsTab,
                 },
             ]}

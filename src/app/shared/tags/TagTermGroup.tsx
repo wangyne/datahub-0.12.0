@@ -2,6 +2,7 @@ import { Typography, Button } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import Highlight from 'react-highlighter';
 
 import { useEntityRegistry } from '../../useEntityRegistry';
@@ -73,7 +74,11 @@ export default function TagTermGroup({
     const [addModalType, setAddModalType] = useState(EntityType.Tag);
     const tagsEmpty = !editableTags?.tags?.length && !uneditableTags?.tags?.length;
     const termsEmpty = !editableGlossaryTerms?.terms?.length && !uneditableGlossaryTerms?.terms?.length;
-
+    const { t } = useTranslation()
+    const tagsTitleTrans = t(EMPTY_MESSAGES.tags.title);
+    const tagsDescTrans = t(EMPTY_MESSAGES.tags.description);
+    const termTitleTrans = t(EMPTY_MESSAGES.terms.title);
+    const termDescTrans = t(EMPTY_MESSAGES.terms.description);
     let renderedTags = 0;
 
     return (
@@ -164,14 +169,15 @@ export default function TagTermGroup({
                     />
                 );
             })}
+
             {showEmptyMessage && canAddTag && tagsEmpty && (
                 <Typography.Paragraph type="secondary">
-                    {EMPTY_MESSAGES.tags.title}. {EMPTY_MESSAGES.tags.description}
+                    {tagsTitleTrans}. {tagsDescTrans}
                 </Typography.Paragraph>
             )}
             {showEmptyMessage && canAddTerm && termsEmpty && (
                 <Typography.Paragraph type="secondary">
-                    {EMPTY_MESSAGES.terms.title}. {EMPTY_MESSAGES.terms.description}
+                    {termTitleTrans}. {termDescTrans}
                 </Typography.Paragraph>
             )}
             {canAddTag && !readOnly && (
@@ -184,7 +190,7 @@ export default function TagTermGroup({
                     {...buttonProps}
                 >
                     <PlusOutlined />
-                    <span>Add Tags</span>
+                    <span>{t('Add Tags')}</span>
                 </NoElementButton>
             )}
             {canAddTerm && !readOnly && (
@@ -197,7 +203,7 @@ export default function TagTermGroup({
                     {...buttonProps}
                 >
                     <PlusOutlined />
-                    <span>Add Terms</span>
+                    <span>{t('Add Terms')}</span>
                 </NoElementButton>
             )}
             {showAddModal && !!entityUrn && !!entityType && (

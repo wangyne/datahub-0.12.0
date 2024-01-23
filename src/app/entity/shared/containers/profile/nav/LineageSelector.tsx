@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Badge } from 'antd';
 import { InfoCircleOutlined, PartitionOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { grey, blue } from '@ant-design/colors';
 import { EntityType } from '../../../../../../types.generated';
 import { navigateToLineageUrl } from '../../../../../lineage/utils/navigateToLineageUrl';
@@ -80,7 +81,7 @@ export const LineageSelector = ({ urn, type }: Props): JSX.Element => {
     const isLineageMode = useIsLineageMode();
     const isHideSiblingsMode = useIsSeparateSiblingsMode();
     const { startTimeMillis, endTimeMillis } = useGetLineageTimeParams();
-
+    const { t } = useTranslation()
     // Fetch the lineage counts for the entity.
     const { data: lineageData, loading: lineageLoading } = useGetLineageCountsQuery({
         variables: {
@@ -124,7 +125,7 @@ export const LineageSelector = ({ urn, type }: Props): JSX.Element => {
                     }}
                 >
                     <DetailIcon />
-                    Details
+                    {t('Details')}
                 </IconGroup>
                 <IconGroup
                     disabled={!canNavigateToLineage}
@@ -142,14 +143,14 @@ export const LineageSelector = ({ urn, type }: Props): JSX.Element => {
                     }}
                 >
                     <LineageIcon />
-                    Lineage
+                    {t('Lineage')}
                 </IconGroup>
             </LineageIconGroup>
             <LineageSummary>
                 <LineageBadge
-                    count={`${lineageLoading ? '-' : upstreamText} upstream, ${
+                    count={`${lineageLoading ? '-' : upstreamText} ${t('upstream')}, ${
                         lineageLoading ? '-' : downstreamText
-                    } downstream`}
+                    } ${t('downstream')}`}
                 />
             </LineageSummary>
         </LineageNavContainer>

@@ -185,7 +185,7 @@ function EntityActions(props: Props) {
             )}
             {isBatchSetDomainModalVisible && (
                 <SearchSelectModal
-                    titleText="Add assets to Domain"
+                    titleText={t("Add assets to Domain")}
                     continueText="Add"
                     onContinue={batchSetDomain}
                     onCancel={() => setIsBatchSetDomainModalVisible(false)}
@@ -196,7 +196,7 @@ function EntityActions(props: Props) {
             )}
             {isBatchSetDataProductModalVisible && (
                 <SearchSelectModal
-                    titleText="Add assets to Data Product"
+                    titleText={t("Add assets to Data Product")}
                     continueText="Add"
                     onContinue={batchSetDataProduct}
                     onCancel={() => setIsBatchSetDataProductModalVisible(false)}

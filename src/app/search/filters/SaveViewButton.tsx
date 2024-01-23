@@ -1,5 +1,6 @@
 import { Tooltip } from 'antd';
 import React, { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { ViewBuilderMode } from '../../entity/view/builder/types';
 import { ViewBuilder } from '../../entity/view/builder/ViewBuilder';
@@ -22,7 +23,7 @@ interface Props {
 export default function SaveViewButton({ activeFilters, unionType }: Props) {
     const [isViewModalVisible, setIsViewModalVisible] = useState(false);
     const isValidViewDefiniton = useMemo(() => canCreateViewFromFilters(activeFilters), [activeFilters]);
-
+    const { t } = useTranslation()
     function toggleViewBuilder() {
         setIsViewModalVisible(true);
         if (!isValidViewDefiniton) {
@@ -37,13 +38,13 @@ export default function SaveViewButton({ activeFilters, unionType }: Props) {
                 placement="right"
                 title={
                     <>
-                        <ToolTipHeader>Save these filters as a new View.</ToolTipHeader>
-                        <div>Views allow you to easily save or share search filters.</div>
+                        <ToolTipHeader>{t('Save these filters as a new View.')}</ToolTipHeader>
+                        <div>{t('Views allow you to easily save or share search filters.')}</div>
                     </>
                 }
             >
                 <TextButton type="text" onClick={toggleViewBuilder} marginTop={0} data-testid="save-as-view">
-                    Save as a View
+                    {t('Save as a View')}
                 </TextButton>
             </Tooltip>
             {isViewModalVisible && (

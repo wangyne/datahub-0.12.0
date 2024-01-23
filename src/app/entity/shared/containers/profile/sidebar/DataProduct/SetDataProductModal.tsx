@@ -1,4 +1,5 @@
 import Modal from 'antd/lib/modal/Modal';
+import { useTranslation } from 'react-i18next';
 import { Button, Select, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -110,10 +111,10 @@ export default function SetDataProductModal({
     const selectValue =
         (selectedDataProduct && [entityRegistry.getDisplayName(EntityType.DataProduct, selectedDataProduct)]) ||
         undefined;
-
+    const { t } = useTranslation()
     return (
         <Modal
-            title={titleOverride || 'Set Data Product'}
+            title={t(titleOverride || 'Set Data Product')}
             open
             onCancel={onModalClose}
             footer={

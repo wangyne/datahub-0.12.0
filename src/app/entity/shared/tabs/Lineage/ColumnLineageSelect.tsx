@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button, Select, Tooltip } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import { blue } from '@ant-design/colors';
 import { useHistory, useLocation } from 'react-router';
@@ -52,13 +53,13 @@ export default function ColumnsLineageSelect({
     const location = useLocation();
     const history = useHistory();
     const { entityWithSchema } = useGetEntityWithSchema();
-
+    const { t } = useTranslation()
     function selectColumn(column: any) {
         updateQueryParams({ column }, location, history);
         setSelectedColumn(column);
     }
 
-    const columnButtonTooltip = isColumnLevelLineage ? 'Hide column level lineage' : 'Show column level lineage';
+    const columnButtonTooltip = isColumnLevelLineage ? t('Hide column level lineage') : t('Show column level lineage');
 
     return (
         <>
@@ -98,7 +99,7 @@ export default function ColumnsLineageSelect({
                 >
                     <ImpactAnalysisIcon />
                     <TextWrapper>
-                        <b>Column Lineage</b>
+                        <b>{t('Column Lineage')}</b>
                         <CaretDownOutlined style={{ fontSize: '10px', marginLeft: 4 }} />
                     </TextWrapper>
                 </StyledButton>

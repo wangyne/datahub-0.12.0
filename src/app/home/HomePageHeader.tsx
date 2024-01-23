@@ -238,7 +238,7 @@ export const HomePageHeader = () => {
                 <WelcomeText>
                     {!!user && (
                         <>
-                            Welcome back, <b>{entityRegistry.getDisplayName(EntityType.CorpUser, user)}</b>.
+                        {t('Welcome back')}, <b>{entityRegistry.getDisplayName(EntityType.CorpUser, user)}</b>.
                         </>
                     )}
                 </WelcomeText>
@@ -268,7 +268,7 @@ export const HomePageHeader = () => {
                 )}
                 <SearchBarContainer id={HOME_PAGE_SEARCH_BAR_ID}>
                     <SearchBar
-                        placeholderText={themeConfig.content.search.searchbarMessage}
+                        placeholderText={t(themeConfig.content.search.searchbarMessage)}
                         suggestions={newSuggestionData?.autoCompleteForMultiple?.suggestions || []}
                         onSearch={onSearch}
                         onQueryChange={onAutoComplete}

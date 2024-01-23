@@ -1,4 +1,5 @@
 import Icon from '@ant-design/icons/lib/components/Icon';
+// import { useTranslation } from 'react-i18next';
 import {
     BookOutlined,
     DatabaseOutlined,
@@ -166,7 +167,7 @@ export function getFilterIconAndLabel(
 ) {
     let icon: React.ReactNode = null;
     let label: React.ReactNode = null;
-
+    // const { t } = useTranslation()
     if (filterField === ENTITY_FILTER_NAME || filterField === LEGACY_ENTITY_FILTER_NAME) {
         icon = entityRegistry.getIcon(filterValue as EntityType, size || 12, IconStyleType.ACCENT, ANTD_GRAY[9]);
         label = entityRegistry.getCollectionName(filterValue.toUpperCase() as EntityType);

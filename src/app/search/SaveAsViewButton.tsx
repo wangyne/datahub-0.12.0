@@ -1,4 +1,5 @@
 import { FilterOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { Button, Tooltip } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
@@ -32,19 +33,20 @@ type Props = {
 };
 
 export const SaveAsViewButton = ({ onClick }: Props) => {
+    const { t } = useTranslation()
     return (
         <Tooltip
             placement="right"
             title={
                 <>
-                    <ToolTipHeader>Save these filters as a new View.</ToolTipHeader>
-                    <div>Views allow you to easily save or share search filters.</div>
+                    <ToolTipHeader>{t('Save these filters as a new View.')}</ToolTipHeader>
+                    <div>{t('Views allow you to easily save or share search filters.')}</div>
                 </>
             }
         >
             <StyledButton type="link" onClick={onClick}>
                 <StyledFilterOutlined />
-                <SaveAsViewText>Save as View</SaveAsViewText>
+                <SaveAsViewText>{t('Save as View')}</SaveAsViewText>
             </StyledButton>
         </Tooltip>
     );

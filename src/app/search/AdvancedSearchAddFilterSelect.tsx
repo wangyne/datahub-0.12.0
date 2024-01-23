@@ -2,7 +2,7 @@ import { Select } from 'antd';
 import * as React from 'react';
 import styled from 'styled-components';
 import { PlusOutlined } from '@ant-design/icons';
-
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput } from '../../types.generated';
 import { DEGREE_FILTER_NAME, FIELD_TO_LABEL, ORDERED_FIELDS } from './utils/constants';
 
@@ -26,7 +26,7 @@ export const AdvancedSearchAddFilterSelect = ({ selectedFilters, onFilterFieldSe
         paddingTop: isCompact ? 0 : undefined,
         paddingBottom: isCompact ? 0 : undefined,
     };
-
+    const { t } = useTranslation()
     return (
         <Select
             value={{
@@ -34,7 +34,7 @@ export const AdvancedSearchAddFilterSelect = ({ selectedFilters, onFilterFieldSe
                 label: (
                     <div>
                         <StyledPlus />
-                        Add Filter
+                        {t('Add Filter')}
                     </div>
                 ),
             }}
@@ -52,7 +52,7 @@ export const AdvancedSearchAddFilterSelect = ({ selectedFilters, onFilterFieldSe
                     data-testid={`adv-search-add-filter-${key}`}
                     key={key}
                 >
-                    {FIELD_TO_LABEL[key]}
+                    {t(FIELD_TO_LABEL[key])}
                 </Option>
             ))}
         </Select>

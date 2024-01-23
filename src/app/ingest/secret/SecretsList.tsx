@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Empty, message, Modal, Pagination, Typography } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import * as QueryString from 'query-string';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
@@ -43,7 +44,7 @@ export const SecretsList = () => {
 
     const pageSize = DEFAULT_PAGE_SIZE;
     const start = (page - 1) * pageSize;
-
+    const { t } = useTranslation()
     // Whether or not there is an urn to show in the modal
     const [isCreatingSecret, setIsCreatingSecret] = useState<boolean>(false);
 
@@ -181,12 +182,12 @@ export const SecretsList = () => {
                             type="text"
                             onClick={() => setIsCreatingSecret(true)}
                         >
-                            <PlusOutlined /> Create new secret
+                            <PlusOutlined /> {t('Create new secret')}
                         </Button>
                     </div>
                     <SearchBar
                         initialQuery={query || ''}
-                        placeholderText="Search secrets..."
+                        placeholderText={t("Search secrets...")}
                         suggestions={[]}
                         style={{
                             maxWidth: 220,

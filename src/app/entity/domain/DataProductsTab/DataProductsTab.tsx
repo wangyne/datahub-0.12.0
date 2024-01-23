@@ -1,5 +1,7 @@
 import { Button, Empty, Pagination } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
+
 import React, { useState } from 'react';
 import * as QueryString from 'query-string';
 import { useLocation } from 'react-router';
@@ -55,6 +57,7 @@ export default function DataProductsTab() {
 
     const start = (page - 1) * DEFAULT_PAGE_SIZE;
     const domainUrn = entityData?.urn || '';
+    const { t } = useTranslation()
 
     const { data, loading } = useGetSearchResultsForMultipleQuery({
         skip: !domainUrn,
@@ -97,7 +100,7 @@ export default function DataProductsTab() {
         <>
             <TabToolbar>
                 <Button type="text" onClick={() => setIsCreateModalVisible(true)}>
-                    <PlusOutlined /> New Data Product
+                    <PlusOutlined /> {t('New Data Product')}
                 </Button>
                 <SearchBar
                     initialQuery={query || ''}

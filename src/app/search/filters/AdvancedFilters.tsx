@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FacetFilterInput, FacetMetadata } from '../../../types.generated';
 import { useUserContext } from '../../context/useUserContext';
@@ -49,7 +50,7 @@ export default function AdvancedFilters({
     const selectedViewUrn = userContext?.localState?.selectedViewUrn;
     const showSaveViewButton = activeFilters?.length > 0 && selectedViewUrn === undefined;
     const onlyShowAdvancedFilters = hasAdvancedFilters(activeFilters, unionType);
-
+    const { t } = useTranslation()
     return (
         <>
             {activeFilters?.length >= 2 && (
@@ -97,7 +98,7 @@ export default function AdvancedFilters({
                 <FilterButtonsWrapper>
                     {showSaveViewButton && <SaveViewButton activeFilters={activeFilters} unionType={unionType} />}
                     <TextButton disabled={onlyShowAdvancedFilters} type="text" onClick={showBasicFilters} marginTop={0}>
-                        Basic Filters
+                        {t('Basic Filters')}
                     </TextButton>
                 </FilterButtonsWrapper>
             </FlexSpacer>

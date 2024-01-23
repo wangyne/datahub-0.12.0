@@ -1,12 +1,14 @@
 import React from 'react';
 import { Divider, List } from 'antd';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Entity } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { IconStyleType } from '../../../entity/Entity';
 import { getPlatformName } from '../../../entity/shared/utils';
 import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
+
 
 export const StyledList = styled(List)`
     overflow-y: auto;
@@ -61,7 +63,7 @@ type Props = {
 
 export const EntityNameList = ({ entities, onClick }: Props) => {
     const entityRegistry = useEntityRegistry();
-
+    const { t } = useTranslation()
     return (
         <StyledList
             dataSource={entities}
@@ -69,7 +71,7 @@ export const EntityNameList = ({ entities, onClick }: Props) => {
                 const genericProps = entityRegistry.getGenericEntityProperties(entity.type, entity);
                 const platformLogoUrl = genericProps?.platform?.properties?.logoUrl;
                 const platformName = getPlatformName(genericProps);
-                const entityTypeName = entityRegistry.getEntityName(entity.type);
+                const entityTypeName = t(entityRegistry.getEntityName(entity.type));
                 const displayName = entityRegistry.getDisplayName(entity.type, entity);
                 const url = entityRegistry.getEntityUrl(entity.type, entity.urn);
                 const fallbackIcon = entityRegistry.getIcon(entity.type, 18, IconStyleType.ACCENT);

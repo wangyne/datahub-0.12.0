@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { EditOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
+
 import { message, Button, Input, Modal, Typography, Form, Collapse } from 'antd';
 import DOMPurify from 'dompurify';
 import {
@@ -51,7 +53,7 @@ function CreateGlossaryEntityModal(props: Props) {
 
     const [createGlossaryTermMutation] = useCreateGlossaryTermMutation();
     const [createGlossaryNodeMutation] = useCreateGlossaryNodeMutation();
-
+    const { t } = useTranslation()
     function createGlossaryEntity() {
         const mutation =
             entityType === EntityType.GlossaryTerm ? createGlossaryTermMutation : createGlossaryNodeMutation;
@@ -176,7 +178,7 @@ function CreateGlossaryEntityModal(props: Props) {
                     </StyledButton>
                     {isDocumentationModalVisible && (
                         <DescriptionModal
-                            title="Add Documentation"
+                            title={t("Add Documentation")}
                             onClose={() => setIsDocumentationModalVisible(false)}
                             onSubmit={addDocumentation}
                             description={documentation}

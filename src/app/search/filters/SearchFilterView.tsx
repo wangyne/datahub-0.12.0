@@ -1,4 +1,5 @@
 import { CaretDownFilled } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { Dropdown } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
@@ -41,6 +42,7 @@ export default function SearchFilterView({
     setSearchQuery,
     updateFilters,
 }: Props) {
+    const { t } = useTranslation()
     return (
         <Dropdown
             trigger={['click']}
@@ -64,7 +66,7 @@ export default function SearchFilterView({
                 data-testid={`filter-dropdown-${capitalizeFirstLetterOnly(displayName)}`}
             >
                 {filterIcon && <IconWrapper>{filterIcon}</IconWrapper>}
-                {capitalizeFirstLetterOnly(displayName)} {numActiveFilters ? `(${numActiveFilters}) ` : ''}
+                {t(capitalizeFirstLetterOnly(displayName))} {numActiveFilters ? `(${numActiveFilters}) ` : ''}
                 <CaretDownFilled style={{ fontSize: '12px', height: '12px' }} />
             </SearchFilterLabel>
         </Dropdown>

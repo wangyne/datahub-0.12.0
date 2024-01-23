@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { ChromePicker } from 'react-color';
 import ColorHash from 'color-hash';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { useGetTagQuery } from '../../graphql/tag.generated';
 import { EntityType, FacetMetadata, Maybe, Scalars } from '../../types.generated';
 import { ExpandedOwner } from '../entity/shared/components/styled/ExpandedOwner/ExpandedOwner';
@@ -204,7 +205,7 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
     const ownersEmpty = !data?.tag?.ownership?.owners?.length;
     const [showAddModal, setShowAddModal] = useState(false);
     const [copiedUrn, setCopiedUrn] = useState(false);
-
+    const { t } = useTranslation()
     useEffect(() => {
         setUpdatedDescription(description);
     }, [description]);
@@ -318,7 +319,8 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
         }
         refetch?.();
     };
-
+    const ownersTitleTrans = t(EMPTY_MESSAGES.owners.title);
+    const ownersDescTrans = t(EMPTY_MESSAGES.owners.description);
     return (
         <>
             {error && <ErrorSection />}
@@ -416,7 +418,7 @@ export default function TagStyleEntity({ urn, useGetSearchResults = useWrappedSe
                         ))}
                         {ownersEmpty && (
                             <Typography.Paragraph type="secondary">
-                                {EMPTY_MESSAGES.owners.title}. {EMPTY_MESSAGES.owners.description}
+                                {ownersTitleTrans}. {ownersDescTrans}
                             </Typography.Paragraph>
                         )}
                         <Button type={ownersEmpty ? 'default' : 'text'} onClick={() => setShowAddModal(true)}>

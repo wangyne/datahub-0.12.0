@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../../../../../../useEntityRegistry';
 import { IconStyleType } from '../../../../../Entity';
 import { useEntityData } from '../../../../EntityContext';
@@ -9,6 +10,7 @@ import { GenericEntityProperties } from '../../../../types';
 import EntityRegistry from '../../../../../EntityRegistry';
 import { EntityType } from '../../../../../../../types.generated';
 import useContentTruncation from '../../../../../../shared/useContentTruncation';
+
 
 export function getDisplayedEntityType(
     entityData: GenericEntityProperties | null,
@@ -32,7 +34,7 @@ function PlatformContentContainer() {
     const typeIcon = entityRegistry.getIcon(entityType, 12, IconStyleType.ACCENT);
     const displayedEntityType = getDisplayedEntityType(entityData, entityRegistry, entityType);
     const instanceId = entityData?.dataPlatformInstance?.instanceId;
-
+    const { t } = useTranslation()
     const { contentRef, isContentTruncated } = useContentTruncation(entityData);
 
     return (
@@ -46,7 +48,7 @@ function PlatformContentContainer() {
             entityLogoComponent={entityLogoComponent}
             instanceId={instanceId}
             typeIcon={typeIcon}
-            entityType={displayedEntityType}
+            entityType={t(displayedEntityType)}
             parentContainers={entityData?.parentContainers?.containers}
             parentContainersRef={contentRef}
             areContainersTruncated={isContentTruncated}

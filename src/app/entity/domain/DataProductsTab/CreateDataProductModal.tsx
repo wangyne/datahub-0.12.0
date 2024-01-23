@@ -1,5 +1,7 @@
 import { Button, Modal, message } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import DataProductBuilderForm from './DataProductBuilderForm';
 import { DataProductBuilderState } from './types';
 import { useCreateDataProductMutation } from '../../../../graphql/dataProduct.generated';
@@ -26,7 +28,7 @@ type Props = {
 export default function CreateDataProductModal({ domain, onCreateDataProduct, onClose }: Props) {
     const [builderState, updateBuilderState] = useState<DataProductBuilderState>(DEFAULT_STATE);
     const [createDataProductMutation] = useCreateDataProductMutation();
-
+    const { t } = useTranslation()
     function createDataProduct() {
         createDataProductMutation({
             variables: {
@@ -41,7 +43,7 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
         })
             .then(({ data, errors }) => {
                 if (!errors) {
-                    message.success('Created Data Product!');
+                    message.success(t('Created Data Product!'));
                     if (data?.createDataProduct) {
                         const updateDataProduct = { ...data.createDataProduct, domain: { domain } };
                         onCreateDataProduct(updateDataProduct as DataProduct);
@@ -58,7 +60,7 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
 
     return (
         <Modal
-            title="Create new Data Product"
+            title={t("Create new Data Product")}
             onCancel={onClose}
             style={MODAL_BODY_STYLE}
             width={MODAL_WIDTH}
@@ -66,10 +68,10 @@ export default function CreateDataProductModal({ domain, onCreateDataProduct, on
             footer={
                 <>
                     <Button onClick={onClose} type="text">
-                        Cancel
+                        {t('Cancel')}
                     </Button>
                     <Button onClick={createDataProduct} disabled={!builderState.name}>
-                        Create
+                        {t('Create')}
                     </Button>
                 </>
             }

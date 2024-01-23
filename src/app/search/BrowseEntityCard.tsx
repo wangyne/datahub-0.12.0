@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useEntityRegistry } from '../useEntityRegistry';
 import { PageRoutes } from '../../conf/Global';
 import { IconStyleType } from '../entity/Entity';
@@ -12,6 +13,7 @@ import { navigateToSearchUrl } from './utils/navigateToSearchUrl';
 import { ENTITY_SUB_TYPE_FILTER_NAME } from './utils/constants';
 import { useIsBrowseV2 } from './useSearchAndBrowseVersion';
 
+
 const BrowseEntityCardWrapper = styled.div``;
 
 export const BrowseEntityCard = ({ entityType, count }: { entityType: EntityType; count: number }) => {
@@ -21,6 +23,7 @@ export const BrowseEntityCard = ({ entityType, count }: { entityType: EntityType
     const isGlossaryEntityCard = entityType === EntityType.GlossaryTerm;
     const entityPathName = entityRegistry.getPathName(entityType);
     const url = isGlossaryEntityCard ? PageRoutes.GLOSSARY : `${PageRoutes.BROWSE}/${entityPathName}`;
+    const { t } = useTranslation()
     const onBrowseEntityCardClick = () => {
         analytics.event({
             type: EventType.HomePageBrowseResultClickEvent,
@@ -44,7 +47,7 @@ export const BrowseEntityCard = ({ entityType, count }: { entityType: EntityType
         <BrowseEntityCardWrapper onClick={browse} data-testid={`entity-type-browse-card-${entityType}`}>
             <LogoCountCard
                 logoComponent={entityRegistry.getIcon(entityType, 18, IconStyleType.HIGHLIGHT)}
-                name={entityRegistry.getCollectionName(entityType)}
+                name={t(entityRegistry.getCollectionName(entityType))}
                 count={count}
                 onClick={onBrowseEntityCardClick}
             />

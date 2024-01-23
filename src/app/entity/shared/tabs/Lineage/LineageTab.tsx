@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Select, Tooltip, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import * as QueryString from 'query-string';
 import { useHistory, useLocation } from 'react-router';
 import {
@@ -67,7 +68,7 @@ const RefreshCacheButton = styled(Button)`
 `;
 
 export const LineageTab = ({
-    properties = { defaultDirection: LineageDirection.Downstream },
+    properties = { defaultDirection: LineageDirection.Upstream },
 }: {
     properties?: { defaultDirection: LineageDirection };
 }) => {
@@ -82,7 +83,7 @@ export const LineageTab = ({
     const [shouldRefetch, setShouldRefetch] = useState(false);
     const [skipCache, setSkipCache] = useState(false);
     const { startTimeMillis, endTimeMillis } = useGetLineageTimeParams();
-
+    const { t } = useTranslation()
     function resetShouldRefetch() {
         setShouldRefetch(false);
     }
@@ -106,7 +107,7 @@ export const LineageTab = ({
             label: (
                 <span data-testid="lineage-tab-direction-select-option-downstream">
                     <ArrowDownOutlined style={{ marginRight: 4 }} />
-                    <b>Downstream</b>
+                    <b>{t('Downstream')}</b>
                 </span>
             ),
             value: LineageDirection.Downstream,
@@ -115,7 +116,7 @@ export const LineageTab = ({
             label: (
                 <span data-testid="lineage-tab-direction-select-option-upstream">
                     <ArrowUpOutlined style={{ marginRight: 4 }} />
-                    <b>Upstream</b>
+                    <b>{t('upstream')}</b>
                 </span>
             ),
             value: LineageDirection.Upstream,
@@ -134,7 +135,7 @@ export const LineageTab = ({
                             <Button type="text">
                                 <ManageLineageIcon />
                                 <Typography.Text>
-                                    <b>Edit</b>
+                                    <b>{t('Edit')}</b>
                                 </Typography.Text>
                                 <StyledCaretDown />
                             </Button>
@@ -148,7 +149,7 @@ export const LineageTab = ({
                     <Button type="text" onClick={routeToLineage}>
                         <PartitionOutlined />
                         <Typography.Text>
-                            <b>Visualize Lineage</b>
+                            <b>{t('Visualize Lineage')}</b>
                         </Typography.Text>
                     </Button>
                 </LeftButtonsWrapper>
@@ -168,11 +169,11 @@ export const LineageTab = ({
                         setIsColumnLevelLineage={setIsColumnLevelLineage}
                     />
                     <LineageTabTimeSelector />
-                    <Tooltip title="Click to refresh data">
+                    <Tooltip title={t("Click to refresh data")}>
                         <RefreshCacheButton type="text" onClick={() => setSkipCache(true)}>
                             <ReloadOutlined />
                             <Typography.Text>
-                                <b>Refresh</b>
+                                <b>{t('Refresh')}</b>
                             </Typography.Text>
                         </RefreshCacheButton>
                     </Tooltip>

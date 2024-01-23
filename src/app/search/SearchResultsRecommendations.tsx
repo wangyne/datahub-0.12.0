@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Divider, Typography } from 'antd';
 import {
@@ -52,15 +53,16 @@ export const SearchResultsRecommendations = ({ userUrn, query, filters }: Props)
         },
     });
     const recommendationModules = data?.listRecommendations?.modules;
+    const { t } = useTranslation()
     return (
         <>
             {recommendationModules && !!recommendationModules.length && (
                 <RecommendationsContainer data-testid="recommendation-container-id">
-                    <RecommendationTitle level={3}>More you may be interested in</RecommendationTitle>
+                    <RecommendationTitle level={3}>{t('More you may be interested in')}</RecommendationTitle>
                     {recommendationModules &&
                         recommendationModules.map((module) => (
                             <RecommendationContainer>
-                                <RecommendationTitle level={5}>{module.title}</RecommendationTitle>
+                                <RecommendationTitle level={5}>{t(module.title)}</RecommendationTitle>
                                 <ThinDivider />
                                 <RecommendationModule
                                     module={module as RecommendationModuleType}

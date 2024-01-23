@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, Modal, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { DEFAULT_BUILDER_STATE, ViewBuilderState } from '../types';
 import { ViewBuilderForm } from './ViewBuilderForm';
 import ClickOutside from '../../../shared/ClickOutside';
@@ -40,16 +41,17 @@ const getTitleText = (mode, urn) => {
     return urn !== undefined ? 'Edit View' : 'Create new View';
 };
 
+
 export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }: Props) => {
     const [viewBuilderState, setViewBuilderState] = useState<ViewBuilderState>(initialState || DEFAULT_BUILDER_STATE);
-
+    const { t } = useTranslation()
     useEffect(() => {
         setViewBuilderState(initialState || DEFAULT_BUILDER_STATE);
     }, [initialState]);
 
     const confirmClose = () => {
         Modal.confirm({
-            title: 'Exit View Editor',
+            title: t('Exit View Editor'),
             content: `Are you sure you want to exit View editor? All changes will be lost`,
             onOk() {
                 onCancel?.();
@@ -62,16 +64,17 @@ export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }
     };
 
     const canSave = viewBuilderState.name && viewBuilderState.viewType && viewBuilderState?.definition?.filter;
-    const titleText = getTitleText(mode, urn);
+    const titleText = t(getTitleText(mode, urn));
 
     return (
+
         <ClickOutside onClickOutside={confirmClose} wrapperClassName="test-builder-modal">
             <Modal
                 wrapClassName="view-builder-modal"
                 footer={null}
                 title={
                     <TitleContainer>
-                        <Typography.Text>{titleText}</Typography.Text>
+                        <Typography.Text>{t(titleText)}</Typography.Text>
                     </TitleContainer>
                 }
                 style={modalStyle}
@@ -100,4 +103,5 @@ export const ViewBuilderModal = ({ mode, urn, initialState, onSubmit, onCancel }
             </Modal>
         </ClickOutside>
     );
-};
+    }
+;

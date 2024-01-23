@@ -1,4 +1,5 @@
 import { CaretUpOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { Button, Checkbox } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -131,7 +132,7 @@ export default function FilterOption({
     const parentEntities: Entity[] = getParentEntities(entity as Entity) || [];
     // only entity type filters return 10,000 max aggs
     const countText = count === MAX_COUNT_VAL && field === ENTITY_SUB_TYPE_FILTER_NAME ? '10k+' : formatNumber(count);
-
+    const { t } = useTranslation()
     function updateFilterValues() {
         if (isFilterOptionSelected(selectedFilterOptions, value)) {
             setSelectedFilterOptions(selectedFilterOptions.filter((option) => option.value !== value));
@@ -170,7 +171,7 @@ export default function FilterOption({
                         {(shouldShowIcon || shouldShowTagColor) && <IconSpacer />}
                         <LabelCountWrapper>
                             <Label ellipsis={{ tooltip: label }} style={{ maxWidth: 150 }}>
-                                {isSubTypeFilter ? capitalizeFirstLetterOnly(label as string) : label}
+                                {isSubTypeFilter ? t(capitalizeFirstLetterOnly(label as string)) : t(label)}
                             </Label>
                             <CountText>{countText}</CountText>
                             {nestedOptions && nestedOptions.length > 0 && (

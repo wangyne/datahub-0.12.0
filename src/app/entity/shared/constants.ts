@@ -28,6 +28,8 @@ export const ANTD_GRAY_V2 = {
     10: '#1B1E22',
 };
 
+
+
 export const EMPTY_MESSAGES = {
     documentation: {
         title: 'No documentation yet',
@@ -50,7 +52,7 @@ export const EMPTY_MESSAGES = {
         description: 'Properties will appear here if they exist in your data source.',
     },
     queries: {
-        title: 'No queries yet',
+        title: ('No queries yet'),
         description: 'Create, view, and share commonly used queries for this dataset.',
     },
     domain: {

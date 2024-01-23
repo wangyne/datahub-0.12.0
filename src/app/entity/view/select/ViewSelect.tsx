@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { Select } from 'antd';
 import styled from 'styled-components';
 import { VscTriangleDown } from 'react-icons/vsc';
+import { useTranslation } from 'react-i18next';
 import { useListMyViewsQuery, useListGlobalViewsQuery } from '../../../../graphql/view.generated';
 import { useUserContext } from '../../../context/useUserContext';
 import { DataHubView, DataHubViewType } from '../../../../types.generated';
@@ -195,14 +196,14 @@ export const ViewSelect = ({ dropdownStyle = {} }: Props) => {
     const handleDropdownVisibleChange = (isNowOpen: boolean) => {
         setIsOpen(isNowOpen);
     };
-
+    const { t } = useTranslation()
     return (
         <ViewSelectContainer>
             <SelectStyled
                 data-testid="view-select"
                 onChange={() => (selectRef?.current as any)?.blur()}
                 value={(foundSelectedUrn && selectedUrn) || undefined}
-                placeholder="View all"
+                placeholder={t("View all")}
                 onSelect={onSelectView}
                 onClear={onClear}
                 ref={selectRef}

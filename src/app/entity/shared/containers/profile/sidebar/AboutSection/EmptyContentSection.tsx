@@ -29,17 +29,16 @@ export default function EmptyContentSection({ hideLinksButton, readOnly }: Props
     const routeToTab = useRouteToTab();
     const refetch = useRefetch();
     const { t } = useTranslation()
-    const titleTrans = t(EMPTY_MESSAGES.documentation.title);
-    const descTrans = t(EMPTY_MESSAGES.documentation.description);
+
     return (
         <EmptyContentWrapper>
             <>
                 <EmptyContentMessage type="secondary">
-                   {titleTrans}. {descTrans}
+                   {t(EMPTY_MESSAGES.documentation.title)}. {t(EMPTY_MESSAGES.documentation.description)}
                 </EmptyContentMessage>
                 {!readOnly && (
                     <Button onClick={() => routeToTab({ tabName: 'Documentation', tabParams: { editing: true } })}>
-                        <EditOutlined /> Add Documentation
+                        <EditOutlined /> {t('Add Documentation')}
                     </Button>
                 )}
                 {!readOnly && !hideLinksButton && (

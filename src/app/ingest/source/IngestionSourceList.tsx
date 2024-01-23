@@ -1,4 +1,5 @@
 import { PlusOutlined, RedoOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import React, { useCallback, useEffect, useState } from 'react';
 import * as QueryString from 'query-string';
 import { useLocation } from 'react-router';
@@ -100,7 +101,7 @@ export const IngestionSourceList = () => {
     // Set of removed urns used to account for eventual consistency
     const [removedUrns, setRemovedUrns] = useState<string[]>([]);
     const [sourceFilter, setSourceFilter] = useState(IngestionSourceType.ALL);
-
+    const { t } = useTranslation()
     // Ingestion Source Queries
     const { loading, error, data, client, refetch } = useListIngestionSourcesQuery({
         variables: {
@@ -370,10 +371,10 @@ export const IngestionSourceList = () => {
                             onClick={() => setIsBuildingSource(true)}
                             data-testid="create-ingestion-source-button"
                         >
-                            <PlusOutlined /> Create new source
+                            <PlusOutlined /> {t('Create new source')}
                         </Button>
                         <Button id={INGESTION_REFRESH_SOURCES_ID} type="text" onClick={onRefresh}>
-                            <RedoOutlined /> Refresh
+                            <RedoOutlined /> {t('Refresh')}
                         </Button>
                     </div>
                     <FilterWrapper>
@@ -388,7 +389,7 @@ export const IngestionSourceList = () => {
 
                         <SearchBar
                             initialQuery={query || ''}
-                            placeholderText="Search sources..."
+                            placeholderText={t("Search sources...")}
                             suggestions={[]}
                             style={{
                                 maxWidth: 220,

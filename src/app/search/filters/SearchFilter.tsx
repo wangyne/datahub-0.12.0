@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FacetFilterInput, FacetMetadata } from '../../../types.generated';
 import useSearchFilterDropdown from './useSearchFilterDropdown';
 import { getFilterDropdownIcon } from './utils';
@@ -28,7 +29,7 @@ export default function SearchFilter({ filter, activeFilters, onChangeFilters }:
         onChangeFilters,
     });
     const filterIcon = getFilterDropdownIcon(filter.field);
-
+    const { t } = useTranslation()
     if (filter.field === ENTITY_FILTER_NAME) {
         return <EntityTypeFilter filter={filter} activeFilters={activeFilters} onChangeFilters={onChangeFilters} />;
     }
@@ -39,7 +40,8 @@ export default function SearchFilter({ filter, activeFilters, onChangeFilters }:
             isMenuOpen={isMenuOpen}
             numActiveFilters={numActiveFilters}
             filterIcon={filterIcon}
-            displayName={filter.displayName || ''}
+            // displayName={filter.displayName || ''}
+            displayName={t(filter.displayName || '')}
             searchQuery={searchQuery}
             loading={areFiltersLoading}
             updateIsMenuOpen={updateIsMenuOpen}

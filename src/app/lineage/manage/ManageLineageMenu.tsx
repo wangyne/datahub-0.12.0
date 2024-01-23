@@ -1,4 +1,5 @@
 import { ArrowDownOutlined, ArrowUpOutlined, MoreOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { Dropdown, Menu, Popover, Tooltip } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -89,7 +90,7 @@ export default function ManageLineageMenu({
     const isDownstreamDisabled = disableDownstream || isDashboard || !canEditLineage;
     const isUpstreamDisabled = disableUpstream || !canEditLineage;
     const isManualLineageSupported = entityType && ENTITY_TYPES_WITH_MANUAL_LINEAGE.has(entityType);
-
+    const { t } = useTranslation()
     // if we don't show manual lineage options or the center node option, this menu has no options
     if (!isManualLineageSupported && isCenterNode) return null;
 
@@ -128,7 +129,7 @@ export default function ManageLineageMenu({
                                             >
                                                 <MenuItemContent>
                                                     <ArrowUpOutlined />
-                                                    &nbsp; Edit Upstream
+                                                    &nbsp; {t('Edit Upstream')}
                                                 </MenuItemContent>
                                             </Popover>
                                         </StyledMenuItem>
@@ -151,7 +152,7 @@ export default function ManageLineageMenu({
                                             >
                                                 <MenuItemContent>
                                                     <ArrowDownOutlined />
-                                                    &nbsp; Edit Downstream
+                                                    &nbsp; {t('Edit Downstream')}
                                                 </MenuItemContent>
                                             </Popover>
                                         </StyledMenuItem>

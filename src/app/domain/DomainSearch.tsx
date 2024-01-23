@@ -1,4 +1,5 @@
 import React, { CSSProperties, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Highlight from 'react-highlighter';
@@ -71,7 +72,7 @@ function DomainSearch() {
         },
         skip: !query,
     });
-
+    const { t } = useTranslation()
     const searchResults = data?.searchAcrossEntities?.searchResults;
     const timerRef = useRef(-1);
     const handleQueryChange = (q: string) => {
@@ -86,7 +87,7 @@ function DomainSearch() {
             <ClickOutside onClickOutside={() => setIsSearchBarFocused(false)}>
                 <SearchBar
                     initialQuery={query || ''}
-                    placeholderText="Search Domains"
+                    placeholderText={t("Search Domains")}
                     suggestions={[]}
                     hideRecommendations
                     style={{

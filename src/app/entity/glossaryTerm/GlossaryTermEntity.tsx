@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { BookFilled, BookOutlined } from '@ant-design/icons';
+import { t } from "i18next";
 import { EntityType, GlossaryTerm, SearchResult } from '../../../types.generated';
 import { Entity, EntityCapabilityType, IconStyleType, PreviewType } from '../Entity';
 import { Preview } from './preview/Preview';
@@ -71,15 +72,15 @@ export class GlossaryTermEntity implements Entity<GlossaryTerm> {
                 hideBrowseBar
                 tabs={[
                     {
-                        name: 'Documentation',
+                        name: t('Documentation'),
                         component: DocumentationTab,
                     },
                     {
-                        name: 'Related Entities',
+                        name: t('Related Entities'),
                         component: GlossaryRelatedEntity,
                     },
                     {
-                        name: 'Schema',
+                        name: t('Schema'),
                         component: SchemaTab,
                         properties: {
                             editMode: false,
@@ -92,11 +93,11 @@ export class GlossaryTermEntity implements Entity<GlossaryTerm> {
                         },
                     },
                     {
-                        name: 'Related Terms',
+                        name: t('Related Terms'),
                         component: GlossayRelatedTerms,
                     },
                     {
-                        name: 'Properties',
+                        name: t('Properties'),
                         component: PropertiesTab,
                     },
                 ]}

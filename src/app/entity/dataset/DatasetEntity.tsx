@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DatabaseFilled, DatabaseOutlined } from '@ant-design/icons';
+import i18n from '../../../i18n/config';
 import { Dataset, DatasetProperties, EntityType, OwnershipType, SearchResult } from '../../../types.generated';
 import { Entity, EntityCapabilityType, IconStyleType, PreviewType } from '../Entity';
 import { useAppConfig } from '../../useAppConfig';
@@ -38,10 +39,12 @@ const SUBTYPES = {
     VIEW: 'view',
 };
 
+
 /**
  * Definition of the DataHub Dataset entity.
  */
 export class DatasetEntity implements Entity<Dataset> {
+
     type: EntityType = EntityType.Dataset;
 
     icon = (fontSize: number, styleType: IconStyleType, color?: string) => {
@@ -93,16 +96,18 @@ export class DatasetEntity implements Entity<Dataset> {
             useUpdateQuery={useUpdateDatasetMutation}
             getOverrideProperties={this.getOverridePropertiesFromEntity}
             headerDropdownItems={new Set([EntityMenuItems.UPDATE_DEPRECATION])}
+
             subHeader={{
                 component: DatasetStatsSummarySubHeader,
             }}
+
             tabs={[
                 {
-                    name: 'Schema',
+                    name: i18n.t('Schema'),
                     component: SchemaTab,
                 },
                 {
-                    name: 'View Definition',
+                    name: i18n.t('View Definition'),
                     component: ViewDefinitionTab,
                     display: {
                         visible: (_, dataset: GetDatasetQuery) =>
@@ -114,11 +119,11 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
-                    name: 'Documentation',
+                    name: i18n.t('Documentation'),
                     component: DocumentationTab,
                 },
                 {
-                    name: 'Preview',
+                    name: i18n.t('Preview'),
                     component: EmbedTab,
                     display: {
                         visible: (_, dataset: GetDatasetQuery) => !!dataset?.dataset?.embed?.renderUrl,
@@ -126,15 +131,15 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
-                    name: 'Lineage',
+                    name: i18n.t('Lineage'),
                     component: LineageTab,
                 },
                 {
-                    name: 'Properties',
+                    name: i18n.t('Properties'),
                     component: PropertiesTab,
                 },
                 {
-                    name: 'Queries',
+                    name: i18n.t('Queries'),
                     component: QueriesTab,
                     display: {
                         visible: (_, _1) => true,
@@ -142,7 +147,7 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
-                    name: 'Stats',
+                    name: i18n.t('Stats'),
                     component: StatsTab,
                     display: {
                         visible: (_, _1) => true,
@@ -153,7 +158,7 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
-                    name: 'Validation',
+                    name: i18n.t('Validation'),
                     component: ValidationsTab,
                     display: {
                         visible: (_, _1) => true,
@@ -165,7 +170,7 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
-                    name: 'Operations',
+                    name: i18n.t('Operations'),
                     component: OperationsTab,
                     display: {
                         visible: (_, dataset: GetDatasetQuery) => {
@@ -181,7 +186,7 @@ export class DatasetEntity implements Entity<Dataset> {
                     },
                 },
                 {
-                    name: 'Access Management',
+                    name: i18n.t('Access Management'),
                     component: AccessManagement,
                     display: {
                         visible: (_, _1) => this.appconfig().config.featureFlags.showAccessManagement,

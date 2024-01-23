@@ -13,21 +13,21 @@ if (process.env.REACT_APP_MOCK === 'true' || process.env.REACT_APP_MOCK === 'cy'
         app.use(
             '/logIn',
             createProxyMiddleware(logInFilter, {
-                target: 'http://10.20.201.199:9102',
+                target: 'http://localhost:9002',
                 changeOrigin: true,
             }),
         );
         app.use(
             '/authenticate',
             createProxyMiddleware({
-                target: 'http://10.20.201.199:9102',
+                target: 'http://localhost:9002',
                 changeOrigin: true,
             }),
         );
         app.use(
             '/api/v2/graphql',
             createProxyMiddleware({
-                target: 'http://10.20.201.199:9102',
+                target: 'http://localhost:9002',
                 changeOrigin: true,
             }),
         );
