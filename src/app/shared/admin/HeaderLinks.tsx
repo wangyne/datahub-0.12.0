@@ -104,7 +104,7 @@ export function HeaderLinks(props: Props) {
                             <Link to="/glossary">
                                 <NavTitleContainer>
                                     <BookOutlined style={{ fontSize: '14px', fontWeight: 'bold' }} />
-                                    <NavTitleText>术语</NavTitleText>
+                                    <NavTitleText>{t('Glossary')}</NavTitleText>
                                 </NavTitleContainer>
                                 <NavTitleDescription>{t('View and modify your data dictionary')}</NavTitleDescription>
                             </Link>
